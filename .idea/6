@@ -1,0 +1,177 @@
+// ==================== 实体类层 ====================
+
+// User.java
+package entity;
+
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private int id;
+    private String username;
+    private String password;
+    private String role; // "student", "teacher", "admin"
+
+    public User() {}
+
+    public User(int id, String username, String password, String role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    // getters and setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
+
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", username='" + username + '\'' + ", role='" + role + '\'' + '}';
+    }
+}
+
+// Question.java
+package entity;
+
+import java.util.List;
+
+public class Question {
+    private int id;
+    private String content;
+    private List<String> options;      // 选项列表
+    private String correctAnswer;      // 正确答案（如"A"或"AB"）
+    private String type;               // "single", "multiple"
+    private int difficulty;            // 1-5
+    private long createTime;
+
+    public Question() {}
+
+    public Question(int id, String content, List<String> options, String correctAnswer,
+                    String type, int difficulty, long createTime) {
+        this.id = id;
+        this.content = content;
+        this.options = options;
+        this.correctAnswer = correctAnswer;
+        this.type = type;
+        this.difficulty = difficulty;
+        this.createTime = createTime;
+    }
+
+    // getters and setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
+    public List<String> getOptions() { return options; }
+    public void setOptions(List<String> options) { this.options = options; }
+    public String getCorrectAnswer() { return correctAnswer; }
+    public void setCorrectAnswer(String correctAnswer) { this.correctAnswer = correctAnswer; }
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
+    public int getDifficulty() { return difficulty; }
+    public void setDifficulty(int difficulty) { this.difficulty = difficulty; }
+    public long getCreateTime() { return createTime; }
+    public void setCreateTime(long createTime) { this.createTime = createTime; }
+}
+
+// Exam.java
+package entity;
+
+import java.util.List;
+
+public class Exam {
+    private int id;
+    private String title;
+    private String description;
+    private long startTime;
+    private long endTime;
+    private int duration;              // 考试时长（分钟）
+    private List<Question> questions;  // 集合嵌套：题目列表
+    private int totalScore;
+    private long createTime;
+
+    public Exam() {}
+
+    public Exam(int id, String title, String description, long startTime, long endTime,
+                int duration, List<Question> questions, int totalScore, long createTime) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.duration = duration;
+        this.questions = questions;
+        this.totalScore = totalScore;
+        this.createTime = createTime;
+    }
+
+    // getters and setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+    public long getStartTime() { return startTime; }
+    public void setStartTime(long startTime) { this.startTime = startTime; }
+    public long getEndTime() { return endTime; }
+    public void setEndTime(long endTime) { this.endTime = endTime; }
+    public int getDuration() { return duration; }
+    public void setDuration(int duration) { this.duration = duration; }
+    public List<Question> getQuestions() { return questions; }
+    public void setQuestions(List<Question> questions) { this.questions = questions; }
+    public int getTotalScore() { return totalScore; }
+    public void setTotalScore(int totalScore) { this.totalScore = totalScore; }
+    public long getCreateTime() { return createTime; }
+    public void setCreateTime(long createTime) { this.createTime = createTime; }
+}
+
+// ExamResult.java
+package entity;
+
+import java.util.Map;
+
+public class ExamResult {
+    private int id;
+    private int examId;
+    private int studentId;
+    private Map<Integer, String> answers;  // 集合嵌套：题目id -> 学生答案
+    private int score;
+    private long submitTime;
+    private String status;                 // "submitted", "graded"
+
+    public ExamResult() {}
+
+    public ExamResult(int id, int examId, int studentId, Map<Integer, String> answers,
+                      int score, long submitTime, String status) {
+        this.id = id;
+        this.examId = examId;
+        this.studentId = studentId;
+        this.answers = answers;
+        this.score = score;
+        this.submitTime = submitTime;
+        this.status = status;
+    }
+
+    // getters and setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public int getExamId() { return examId; }
+    public void setExamId(int examId) { this.examId = examId; }
+    public int getStudentId() { return studentId; }
+    public void setStudentId(int studentId) { this.studentId = studentId; }
+    public Map<Integer, String> getAnswers() { return answers; }
+    public void setAnswers(Map<Integer, String> answers) { this.answers = answers; }
+    public int getScore() { return score; }
+    public void setScore(int score) { this.score = score; }
+    public long getSubmitTime() { return submitTime; }
+    public void setSubmitTime(long submitTime) { this.submitTime = submitTime; }
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+}
